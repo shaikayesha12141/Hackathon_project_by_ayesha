@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="College student management portal demo">
+  <title>CampusConnect | College Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="intro" class="intro-screen">
+    <div class="intro-orb"></div>
+    <p class="eyebrow">YOUR CAMPUS. ONE PLACE.</p>
+    <h1 class="intro-title">Campus<span>Connect</span></h1>
+    <p class="intro-subtitle">Learn · Grow · Achieve</p>
+    <button id="enterBtn" class="btn btn-light">Enter portal <span aria-hidden="true">→</span></button>
+  </div>
+
+  <main id="authView" class="auth-view hidden">
+    <section class="auth-brand">
+      <div class="brand-mark">CC</div>
+      <p class="eyebrow">COLLEGE MANAGEMENT PORTAL</p>
+      <h1>Everything you need for your campus journey.</h1>
+      <p>Attendance, academics, fees and campus services in one simple dashboard.</p>
+      <div class="brand-pills"><span>Attendance</span><span>Examinations</span><span>Student services</span></div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-tabs">
+        <button class="tab active" data-auth-tab="login">Sign in</button>
+        <button class="tab" data-auth-tab="register">Student registration</button>
+      </div>
+      <form id="loginForm" class="auth-form">
+        <h2>Welcome back</h2><p class="muted">Sign in to continue to your portal.</p>
+        <label for="loginId">Roll number or admin ID</label>
+        <input id="loginId" autocomplete="username" placeholder="e.g. 23CSE001" required>
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter password" required>
+        <label for="loginRole">Sign in as</label>
+        <select id="loginRole"><option value="student">Student</option><option value="faculty">Faculty</option><option value="admin">Admin / College management</option></select>
+        <button class="btn btn-primary full" type="submit">Sign in</button>
+        <p class="hint">Demo accounts are listed in README.md. Do not use real passwords here.</p>
+      </form>
+      <form id="registerForm" class="auth-form hidden">
+        <h2>Student registration</h2><p class="muted">Create a demo student account.</p>
+        <label for="regName">Full name</label><input id="regName" required placeholder="Student name">
+        <label for="regRoll">Roll number</label><input id="regRoll" required placeholder="e.g. 23CSE099">
+        <label for="regBranch">Branch</label><select id="regBranch"><option>CSE</option><option>ECE</option><option>EEE</option><option>IT</option><option>Mechanical</option><option>Civil</option><option>Diploma CSE</option></select>
+        <label for="regYear">Year / semester</label><select id="regYear"><option value="1">1st year · Semester 1</option><option value="2">1st year · Semester 2</option><option value="3">2nd year · Semester 3</option><option value="4">2nd year · Semester 4</option><option value="5">3rd year · Semester 5</option><option value="6">3rd year · Semester 6</option><option value="7">4th year · Semester 7</option><option value="8">4th year · Semester 8</option></select>
+        <label for="regPassword">Create password</label><input id="regPassword" type="password" minlength="6" required placeholder="At least 6 characters">
+        <button class="btn btn-primary full" type="submit">Create demo account</button>
+        <p class="hint">In production, account creation must be verified by college management.</p>
+      </form>
+    </section>
+  </main>
+
+  <div id="appView" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand"><div class="brand-mark small">CC</div><div><strong>CampusConnect</strong><small>Student Portal</small></div></div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav id="sideNav">
+        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-page="attendance"><span>◷</span> Attendance</button>
+        <button class="nav-item" data-page="exams"><span>▤</span> Exam cell</button>
+        <button class="nav-item" data-page="timetable"><span>▦</span> Timetable</button>
+        <button class="nav-item" data-page="fees"><span>₹</span> College fees</button>
+        <button class="nav-item" data-page="transport"><span>↗</span> Transport</button>
+        <button class="nav-item" data-page="feedback"><span>☆</span> Faculty feedback</button>
+        <button class="nav-item" data-page="regulation"><span>▧</span> Regulations & subjects</button>
+        <button class="nav-item admin-only hidden" data-page="management"><span>⚙</span> Management</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-box"><strong>Need help?</strong><p>Contact your college office for official records.</p></div><button id="signOutBtn" class="nav-item signout"><span>↪</span> Sign out</button></div>
+    </aside>
+
+    <section class="main-area">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn mobile-only" aria-label="Toggle menu">☰</button>
+        <div><p class="top-kicker">COLLEGE PORTAL</p><h2 id="pageTitle">Dashboard</h2></div>
+        <div class="top-actions"><span class="date-chip" id="todayLabel"></span><div class="avatar" id="avatar">S</div></div>
+      </header>
+      <div id="pageContent" class="page-content"></div>
+      <footer>CampusConnect demo · Academic records shown here are sample data only.</footer>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card"><button id="closeModal" class="modal-close" aria-label="Close">×</button><h2 id="modalTitle">Details</h2><div id="modalBody"></div></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
